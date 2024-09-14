@@ -19,6 +19,18 @@ function App(){
     }
   }, [showSuccess]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey && e.key === 'Enter') {
+        addNote();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [note]);
+
   const addNote = () => {
     if (note.trim() === '') {
       setShowError(true);
@@ -65,7 +77,7 @@ function App(){
           className='border p-2 w-full mb-4 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500' 
           ref={inputRef}
         />
-        <Button onClick={addNote} disabled={note.trim() === ''}>
+        <Button onClick={addNote} disabled={note.trim() === ''} tooltip="添加记录" shortcut="⌘ + Enter">
           添加记录
         </Button>
         <AnimatePresence>
@@ -93,7 +105,7 @@ function App(){
         <ul className='mt-4'>
           {filteredNotes.map((note, index) => (
             <NoteItem 
-              key={index} 
+              key={`${note}-${index}`}  // 确保 key 唯一
               note={note} 
               index={index} 
               onDelete={deleteNote} 
