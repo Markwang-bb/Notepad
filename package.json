@@ -22,6 +22,7 @@
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "framer-motion": "^11.5.4",
     "globals": "^15.9.0",
     "postcss": "^8.4.45",
     "remixicon": "^4.3.0",
