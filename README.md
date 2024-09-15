@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+# 吵架记事本
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> argumentlogbook是一个基于**React**和**TypeScript**的项目，旨在提供一个记录和管理论证的平台。该项目使用了最新的技术栈，包括**React 18** 、TypeScript 5.5、**Vite 5.4**等，确保了项目的高效性和可维护性。
 
-Currently, two official plugins are available:
+> 该项目只是拿来记我和GF 的 吵架记录
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 项目结构
 
-## Expanding the ESLint configuration
+项目结构如下：
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* `src`: 源代码目录
+	+ `components`: 组件目录
+	+ `pages`: 页面目录
+	+ `utils`: 工具函数目录
+	+ `index.tsx`: 入口文件
+* `public`: 公共资源目录
+* `package.json`: 项目配置文件
 
-- Configure the top-level `parserOptions` property like this:
+# 使用方法
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. 克隆项目：`git clone https://github.com/your-username/argumentlogbook.git`
+2. 安装依赖：`pnpm install`
+3. 启动开发服务器：`pnpm run dev`
+4. 访问项目：在浏览器中访问 `http://localhost:3000`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# 许可证
+
+本项目使用MIT许可证，详情请见LICENSE文件。
+
