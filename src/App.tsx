@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import 'remixicon/fonts/remixicon.css';
 import NoteItem from './components/NoteItem';
 import SearchBar from './components/SearchBar';
 import Button from './components/Button';
 
-function App(){
+function App() {
   const [notes, setNotes] = useState<string[]>([]);
   const [note, setNote] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -31,35 +31,37 @@ function App(){
     };
   }, [note]);
 
-  const addNote = () => {
+  const addNote = useCallback(() => {
     if (note.trim() === '') {
       setShowError(true);
       setTimeout(() => setShowError(false), 2000);
       return;
     }
-    setNotes([...notes, note]);
+    setNotes((prevNotes) => [...prevNotes, note]);
     setNote('');
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 2000);
-  }
+  }, [note]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       addNote();
     }
-  }
+  };
 
-  const deleteNote = (index: number) => {
-    setNotes(notes.filter((_, i) => i !== index));
-  }
+  const deleteNote = useCallback((index: number) => {
+    setNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
+  }, []);
 
-  const editNote = (index: number, newNote: string) => {
-    const updatedNotes = [...notes];
-    updatedNotes[index] = newNote;
-    setNotes(updatedNotes);
-  }
+  const editNote = useCallback((index: number, newNote: string) => {
+    setNotes((prevNotes) => {
+      const updatedNotes = [...prevNotes];
+      updatedNotes[index] = newNote;
+      return updatedNotes;
+    });
+  }, []);
 
-  const filteredNotes = notes.filter(note => note.includes(searchTerm));
+  const filteredNotes = useMemo(() => notes.filter(note => note.includes(searchTerm)), [notes, searchTerm]);
 
   return (
     <>
@@ -77,7 +79,7 @@ function App(){
           className='border p-2 w-full mb-4 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500' 
           ref={inputRef}
         />
-        <Button onClick={addNote} disabled={note.trim() === ''} tooltip="添加记录" shortcut="⌘ + Enter">
+        <Button onClick={addNote} disabled={note.trim() === ''} tooltip="command + k" shortcut="⌘ + Enter">
           添加记录
         </Button>
         <AnimatePresence>
@@ -121,4 +123,4 @@ function App(){
   )
 }
 
-export default App
+export default App;
