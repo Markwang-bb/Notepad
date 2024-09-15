@@ -16,16 +16,27 @@
 * `public`: 公共资源目录
 * `package.json`: 项目配置文件
 
-# 使用方法
+###  使用方法
 
-1. 克隆项目：`git clone https://github.com/your-username/argumentlogbook.git`
-2. 安装依赖：`pnpm install`
-3. 启动开发服务器：`pnpm run dev`
-4. 访问项目：在浏览器中访问 `http://localhost:3000`
+克隆项目
+```bash
+
+git clone https://github.com/your-username/argumentlogbook.git
+
+```
+
+```bash
+pnpm install
+
+pnpm dev run
+
+```
+
+访问该项目：在浏览器中访问 `http://localhost:5178`
 
 
 
 # 许可证
 
-本项目使用MIT许可证，详情请见LICENSE文件。
+本项目使用MIT许可证，详情请见LICENSE文件
 
